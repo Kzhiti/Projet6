@@ -4,7 +4,6 @@
     <list default="true" id="68a7da11-aaed-4edc-97d8-75ede29dafda" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Trick.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Trick.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,6 +154,10 @@
       <workItem from="1618507347618" duration="383000" />
       <workItem from="1619081192279" duration="4317000" />
       <workItem from="1619105550039" duration="2054000" />
+      <workItem from="1619448460382" duration="451000" />
+      <workItem from="1619685109140" duration="12000" />
+      <workItem from="1619685279899" duration="133000" />
+      <workItem from="1619686155998" duration="363000" />
     </task>
     <servers />
   </component>
