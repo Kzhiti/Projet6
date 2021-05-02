@@ -2,7 +2,8 @@
 
 {% block title %}Register{% endblock %}
 
-{% block content %}
+{% block body %}
+    {% block content %}
     {% for flashError in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
@@ -10,12 +11,13 @@
     <h1>Register</h1>
 
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.username) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
+        {{ form_row(registrationForm.username, {
+            label: 'Nom de Compte'
         }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Mot de Passe'
+        }) }}
+        <button type="submit" class="btn">Inscription</button>
     {{ form_end(registrationForm) }}
+        {% endblock %}
 {% endblock %}
