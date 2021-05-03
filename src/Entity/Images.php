@@ -28,6 +28,11 @@ class Images
      */
     private $trick;
 
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, mappedBy="image", cascade={"persist", "remove"})
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,6 +58,28 @@ class Images
     public function setTrick(?Tricks $trick): self
     {
         $this->trick = $trick;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setImage(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getImage() !== $this) {
+            $user->setImage($this);
+        }
+
+        $this->user = $user;
 
         return $this;
     }

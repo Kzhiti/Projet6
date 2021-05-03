@@ -7,6 +7,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class TrickType extends AbstractType
 {
@@ -16,6 +18,12 @@ class TrickType extends AbstractType
             ->add('nom')
             ->add('description')
             ->add('category')
+            ->add('images', FileType::class, [
+                'label' => 'Images',
+                'mapped' => false,
+                'required' => false,
+                'multiple' => true
+            ])
             ->add('Confirmer', SubmitType::class)
         ;
     }

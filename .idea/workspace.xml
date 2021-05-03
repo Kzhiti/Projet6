@@ -21,36 +21,14 @@
   <component name="ChangeListManager">
     <list default="true" id="68a7da11-aaed-4edc-97d8-75ede29dafda" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210429094752.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210429124511.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210429124937.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210429130719.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210429131223.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210429131412.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210429131624.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210503103922.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210503104641.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210503104822.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210503104942.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210503105716.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210503105938.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210503110034.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210503110100.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210503110152.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210503110410.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210503110536.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210503110627.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210503110646.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210503110829.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210503111138.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HomepageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomepageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TricksController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TricksController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Comments.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Tricks.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Tricks.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegistrationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Images.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Images.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/CommentsRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/TrickType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/TrickType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Security/LoginFormAuthenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/LoginFormAuthenticator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/tricks/tricks.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tricks/tricks.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,11 +167,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/tricks" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/security" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\Projet6\templates\security" />
       <recent name="C:\wamp64\www\Projet6\templates\tricks" />
       <recent name="C:\wamp64\www\Projet6\templates\homepage" />
     </key>
@@ -217,7 +196,7 @@
       <workItem from="1619715509428" duration="3598000" />
       <workItem from="1619958184609" duration="4797000" />
       <workItem from="1619963183545" duration="9000" />
-      <workItem from="1620036408794" duration="11431000" />
+      <workItem from="1620036408794" duration="15410000" />
     </task>
     <servers />
   </component>
@@ -237,6 +216,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1620050585061">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1620050585061" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1619081240252">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
