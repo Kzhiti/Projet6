@@ -23,19 +23,22 @@
             {% block nav %}
                 <nav>
                     <ul>
-                        <li class="nav-item {% if mainNavHome is defined %}active{% endif %}">
+                        <li class="nav-item">
                             <a href="{{path('app_homepage_index')}}">Accueil</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{path('tricks')}}">Figures</a>
+                        </li>
                         {% if not app.user %}
-                        <li class="nav-item {% if mainNavLogin is defined %}active{% endif %}">
+                        <li class="nav-item">
                             <a href="{{path('app_login')}}">Connexion</a>
                         </li>
-                        <li class="nav-item {% if mainNavRegistration is defined %}active{% endif %}">
+                        <li class="nav-item">
                             <a href="{{path('app_register')}}">Inscription</a>
                         </li>
                         {% endif %}
                         {% if app.user %}
-                        <li class="nav-item {% if mainNavRegistration is defined %}active{% endif %}">
+                        <li class="nav-item">
                             <a href="{{ path('app_logout') }}">Deconnexion</a>
                         </li>
                         {% endif %}

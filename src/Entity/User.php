@@ -28,35 +28,10 @@ class User implements UserInterface
     private $username;
 
     /**
-     * @ORM\Column(type="json")
-     */
-    private $roles = [];
-
-    /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
     private $password;
-
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $created_at;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $nom;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $prenom;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $photo;
 
     /**
      * @ORM\OneToMany(targetEntity=Comments::class, mappedBy="author")
@@ -69,6 +44,31 @@ class User implements UserInterface
      * @ORM\JoinColumn(nullable=false)
      */
     private $tricks;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $nom;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $prenom;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $created_at;
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $role = [];
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $photo;
 
     public function __construct()
     {
@@ -256,6 +256,18 @@ class User implements UserInterface
                 $comment->setAuthor(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getRole(): ?array
+    {
+        return $this->role;
+    }
+
+    public function setRole(?array $role): self
+    {
+        $this->role = $role;
 
         return $this;
     }

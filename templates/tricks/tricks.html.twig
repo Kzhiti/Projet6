@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% block content %}
+        <h1>Liste des articles</h1>
+        {% for trick in tricks %}
+            <h2>{{ trick.nom }}</h2>
+            <div>{{ trick.description }}</div>
+            <div>{{ trick.category }}</div>
+        {% else %}
+            <h2>Il n'y a aucuns article pour l'instant</h2>
+        {% endfor %}
+    {% endblock %}
+{% endblock %}
