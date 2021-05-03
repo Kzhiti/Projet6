@@ -61,14 +61,14 @@ class User implements UserInterface
     private $created_at;
 
     /**
-     * @ORM\Column(type="array", nullable=true)
-     */
-    private $role = [];
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $photo;
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $roles = [];
 
     public function __construct()
     {

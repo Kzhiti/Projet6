@@ -2,13 +2,25 @@
 
 {% block body %}
     {% block content %}
-        <h1>Liste des articles</h1>
+        <h1>Liste des figures</h1>
+        {% if app.user %}
+        <a href="{{path('add_tricks')}}">Ajoutez une figure</a>
+        {% endif %}
         {% for trick in tricks %}
-            <h2>{{ trick.nom }}</h2>
+            <h2>
+                {{ trick.nom }}
+                {% if app.user %}
+                <a href="{{ path('update_trick', {'id':trick.id}) }}"> Modifier</a>
+                <a href="{{ path('delete_trick', {'id':trick.id}) }}"> Supprimer</a>
+                {% endif %}
+            </h2>
             <div>{{ trick.description }}</div>
             <div>{{ trick.category }}</div>
         {% else %}
-            <h2>Il n'y a aucuns article pour l'instant</h2>
+            <p>Il n'y aucunes figures pour le moment.</p>
+            {% if app.user %}
+            <p>Ajoutez en une !</p>
+            {% endif %}
         {% endfor %}
     {% endblock %}
 {% endblock %}
