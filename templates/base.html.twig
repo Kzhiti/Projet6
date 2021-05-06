@@ -26,12 +26,11 @@
                 <a href="{{path('profile', {'id':app.user.id})}}">Profil</a>
                 <a href="{{ path('app_logout') }}">Deconnexion</a>
             {% endif %}
-
         </header>
     {% endblock %}
     {%  if app.user %}
     <div class="user">
-        <img src="{{ asset('/uploads/'~app.user.photo) }}" alt="" width="50">
+        <img src="{{ asset('/public/uploads/'~app.user.photo) }}" alt="" width="50">
         <h2>{{ app.user.nom }} {{ app.user.prenom }}</h2>
     </div>
     {% endif %}
