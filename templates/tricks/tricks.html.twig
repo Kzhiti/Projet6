@@ -9,8 +9,8 @@
             {% for trick in tricks %}
                 <div class="content-trick">
                     {% if app.user %}
-                        <a class="a-tricks" href="{{ path('update_trick', {'id':trick.id}) }}"> Modifier</a>
-                        <a class="a-tricks" href="{{ path('delete_trick', {'id':trick.id}) }}"> Supprimer</a>
+                        <a class="a-tricks" href="{{ path('update_trick', {'id':trick.id}) }}"><img src="../../public/assets/img/stylo.jpg" alt="Booking Image"></a>
+                        <a class="a-tricks" href="{{ path('delete_trick', {'id':trick.id}) }}"><img src="../../public/assets/img/corbeille.jpg" alt="Booking Image"></a>
                     {% endif %}
                     <h2>
                         <a class="a-tricks-title" href="{{path('trick', {'id':trick.id})}}">{{ trick.nom }}</a>
@@ -18,7 +18,6 @@
                     <div>{{ trick.description }}</div>
                     <div>{{ trick.category }}</div>
                 </div>
-                <p>-</p>
             {% else %}
                 <p>Il n'y aucunes figures pour le moment.</p>
                 {% if app.user %}

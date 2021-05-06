@@ -194,6 +194,7 @@ label {
 .content {
     background-color: #111;
     border-radius: 10px;
+    padding-bottom: 20px;
 }
 
 .content .a-tricks {
@@ -202,7 +203,7 @@ label {
     width: auto;
     background: #edb77d;
     color: #fff;
-    padding: 10px;
+    padding: 10px 10px 10px 10px;
     font-weight: bold;
     border: none;
     border-radius: 5px;
@@ -217,7 +218,7 @@ label {
     background-color: #edb77d;
     border-radius: 10px;
     width: calc(100% - 10%);
-    margin: 0 auto;
+    margin: auto;
     color: black;
 }
 
@@ -227,6 +228,7 @@ label {
 
 .a-tricks-title {
     text-decoration: none;
+    color: black;
 }
 
 .a-tricks-title:visited {
@@ -239,4 +241,10 @@ label {
 
 .trick-name {
     text-align: center;
+}
+
+.user {
+    background-color: #111;
+    width: fit-content;
+    border-bottom-right-radius: 10px;
 }

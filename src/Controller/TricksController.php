@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Tricks;
+use App\Entity\Images;
 
 class TricksController extends AbstractController
 {
@@ -47,15 +48,26 @@ class TricksController extends AbstractController
 
             $trick->setSlug('t1');
 
+            $images = $form->get('images')->getData();
+            if ($images) {
+                foreach ($images as $image) {
+                    $file = md5(uniqid()) . '.' . $image->guessExtension();
+
+                    $image->move(
+                        $this->getParameter('images_directory'),
+                        $file
+                    );
+
+                    $img = new Images();
+                    $img->setUrl($file);
+                    $trick->addImage($img);
+                }
+            }
+
             $doctrine = $this->getDoctrine()->getManager();
-
-            // On hydrate notre instance $commentaire
             $doctrine->persist($trick);
-
-            // On écrit en base de données
             $doctrine->flush();
 
-            // On redirige l'utilisateur
             return $this->redirectToRoute('tricks');
         }
 

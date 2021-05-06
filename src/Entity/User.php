@@ -61,24 +61,20 @@ class User implements UserInterface
     private $created_at;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $photo;
-
-    /**
      * @ORM\Column(type="array", nullable=true)
      */
     private $roles = [];
 
     /**
-     * @ORM\OneToOne(targetEntity=Images::class, inversedBy="user", cascade={"persist", "remove"})
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $image;
+    private $photo;
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->tricks = new ArrayCollection();
+        $this->photo = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -193,18 +189,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
-    }
-
-    public function setPhoto(string $photo): self
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Tricks[]
      */
@@ -277,14 +261,14 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getImage(): ?Images
+    public function getPhoto(): ?string
     {
-        return $this->image;
+        return $this->photo;
     }
 
-    public function setImage(?Images $image): self
+    public function setPhoto(?string $photo): self
     {
-        $this->image = $image;
+        $this->photo = $photo;
 
         return $this;
     }

@@ -8,6 +8,9 @@
                 </div>
                 <div class="booking-form">
                     <h1>Modifiez votre profil</h1>
+                    <div>
+                        <img src="{{ asset('/uploads/'~app.user.photo) }}" alt="">
+                    </div>
                     {{ form(form) }}
                 </div>
             </div>

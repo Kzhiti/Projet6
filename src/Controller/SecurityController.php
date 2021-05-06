@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Photo;
 use App\Entity\User;
 use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -45,6 +46,18 @@ class SecurityController extends AbstractController
                     $form->get('password')->getData()
                 )
             );
+
+            $photo = $form->get('images')->getData();
+            if ($photo) {
+                $file = md5(uniqid()) . '.' . $photo->guessExtension();
+
+                $photo->move(
+                    $this->getParameter('images_directory'),
+                    $file
+                );
+
+                $user->setPhoto($file);
+            }
 
             $doctrine = $this->getDoctrine()->getManager();
             $doctrine->persist($user);

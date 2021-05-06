@@ -29,7 +29,12 @@
 
         </header>
     {% endblock %}
-
+    {%  if app.user %}
+    <div class="user">
+        <img src="{{ asset('/uploads/'~app.user.photo) }}" alt="" width="50">
+        <h2>{{ app.user.nom }} {{ app.user.prenom }}</h2>
+    </div>
+    {% endif %}
     <div class="main">
         <div class="container">
             {% block content %}

@@ -5,10 +5,13 @@ namespace App\Entity;
 use App\Repository\TricksRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=TricksRepository::class)
+ * @UniqueEntity("nom")
  */
 class Tricks
 {
@@ -20,7 +23,7 @@ class Tricks
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $nom;
 
@@ -62,14 +65,14 @@ class Tricks
     private $comments;
 
     /**
-     * @ORM\OneToMany(targetEntity=Images::class, mappedBy="trick", orphanRemoval=true)
-     */
-    private $images;
-
-    /**
      * @ORM\OneToMany(targetEntity=Videos::class, mappedBy="trick", orphanRemoval=true)
      */
     private $videos;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Images::class, mappedBy="trick", cascade={"persist"})
+     */
+    private $images;
 
     public function __construct()
     {
@@ -230,33 +233,11 @@ class Tricks
     }
 
     /**
-     * @return Collection|Image[]
+     * @return Collection|Videos[]
      */
-    public function getImage(): Collection
+    public function getVideos(): Collection
     {
-        return $this->image;
-    }
-
-    public function addImage(Image $image): self
-    {
-        if (!$this->image->contains($image)) {
-            $this->image[] = $image;
-            $image->setTrick($this);
-        }
-
-        return $this;
-    }
-
-    public function removeImage(Image $image): self
-    {
-        if ($this->image->removeElement($image)) {
-            // set the owning side to null (unless already changed)
-            if ($image->getTrick() === $this) {
-                $image->setTrick(null);
-            }
-        }
-
-        return $this;
+        return $this->videos;
     }
 
     /**
@@ -267,11 +248,25 @@ class Tricks
         return $this->images;
     }
 
-    /**
-     * @return Collection|Videos[]
-     */
-    public function getVideos(): Collection
+    public function addImage(Images $image): self
     {
-        return $this->videos;
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setTrick($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Images $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getTrick() === $this) {
+                $image->setTrick(null);
+            }
+        }
+
+        return $this;
     }
 }

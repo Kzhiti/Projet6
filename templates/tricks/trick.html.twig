@@ -5,14 +5,20 @@
             <h1 class="trick-name">{{ trick.nom }}</h1>
             <h2 class="trick-category">{{ trick.category }}</h2>
             <p class="trick-description">{{ trick.description }}</p>
+            {% for image in trick.getimages %}
+                <img src="{{ asset('/uploads/'~image.url) }}" alt="">
+            {% endfor %}
+            <h2>Commentaires</h2>
             {% for comment in comments %}
                 <div class="content-trick">
                     <p>{{ comment.author.nom}} {{ comment.author.prenom }}</p>
                     <p>{{ comment.description }}</p>
+                    <img src="{{ asset('/uploads/'~comment.author.photo) }}" alt="">
                     <p>{{ comment.createdAt|date("d/m/Y") }}</p>
                 </div>
             {% endfor %}
-            <h2>Commentaire</h2>
+            {% if app.user %}
             {{ form(form) }}
+            {% endif %}
         </div>
     {% endblock %}
