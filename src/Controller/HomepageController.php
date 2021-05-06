@@ -10,7 +10,7 @@ class HomepageController extends AbstractController {
      * @Route("/")
      */
     public function index() {
-        return $this->render('homepage/index.html.twig', ['title'=>'Accueil']);
+        return $this->render('homepage/index.html.twig', ['title'=>'SnowTricks']);
     }
 
 }

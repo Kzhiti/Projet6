@@ -1,23 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription{% endblock %}
 
-{% block body %}
+
     {% block content %}
     {% for flashError in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
-
-    <h1>Register</h1>
-
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.username, {
-            label: 'Nom de Compte'
-        }) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Mot de Passe'
-        }) }}
-        <button type="submit" class="btn">Inscription</button>
-    {{ form_end(registrationForm) }}
+    <div class="booking-content">
+        <div class="booking-image">
+            <img class="booking-img" src="../../public/assets/img/snowboarder-backflip.jpg" alt="Booking Image">
+        </div>
+        <div class="booking-form">
+            <h1>Veuillez vous inscrire</h1>
+            {{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.username, {
+                label: 'Nom de Compte',
+            }) }}
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Mot de Passe',
+            }) }}
+            <button type="submit" class="submit">Inscription</button>
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
         {% endblock %}
-{% endblock %}
+

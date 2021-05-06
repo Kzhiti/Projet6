@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Form\CommentType;
 use App\Form\TrickType;
+use App\Entity\Comments;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -100,6 +102,42 @@ class TricksController extends AbstractController
         return $this->render('tricks/update_trick.html.twig', [
             'title' => 'Figures',
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/trick/{id}", name="trick")
+     */
+    public function trick($id, Request $request) {
+        $trick = $this->getDoctrine()->getRepository(Tricks::class)->findOneBy(['id' => $id]);
+
+        $comments = $this->getDoctrine()->getRepository(Comments::class)->findBy([
+            'trick_parent' => $trick,
+        ],['created_at' => 'desc']);
+
+        $comment = new Comments();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $comment->setTrickParent($trick);
+            $comment->setCreatedAt(new \DateTime('now'));
+            $comment->setAuthor($this->getUser());
+
+
+            $doctrine = $this->getDoctrine()->getManager();
+            $doctrine->persist($comment);
+            $doctrine->flush();
+
+            // On redirige l'utilisateur
+            return $this->redirectToRoute('trick', ['id' => $id]);
+        }
+
+        return $this->render('tricks/trick.html.twig', [
+            'form' => $form->createView(),
+            'trick' => $trick,
+            'comments' => $comments,
         ]);
     }
 }

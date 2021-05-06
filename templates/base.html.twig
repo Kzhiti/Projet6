@@ -9,64 +9,43 @@
             {% endblock %}
         </title>
         {% block stylesheets %}
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
             <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
         {% endblock %}
     </head>
     <body>
-
     {% block header %}
-        <header id="header" class="bck1 border-bottom">
-            <div class="container">
-                <h1>{% if title is defined %}{{title}}{% else %}SnowTricks{% endif %}</h1>
-            </div>
-            {% block nav %}
-                <nav>
-                    <ul>
-                        <li class="nav-item">
-                            <a href="{{path('app_homepage_index')}}">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{path('tricks')}}">Figures</a>
-                        </li>
-                        {% if not app.user %}
-                        <li class="nav-item">
-                            <a href="{{path('app_login')}}">Connexion</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{path('app_register')}}">Inscription</a>
-                        </li>
-                        {% endif %}
-                        {% if app.user %}
-                        <li class="nav-item">
-                            <a href="{{path('profile', {'id':app.user.id})}}">Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ path('app_logout') }}">Deconnexion</a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                </nav>
-            {% endblock %}
-        </header>
+        <header>
+            <h1>SnowTricks</h1>
+            <a href="{{path('app_homepage_index')}}">Accueil</a>
+            <a href="{{path('tricks')}}">Figures</a>
+            {% if not app.user %}
+                <a href="{{path('app_login')}}">Connexion</a>
+                <a href="{{path('app_register')}}">Inscription</a>
+            {% endif %}
+            {% if app.user %}
+                <a href="{{path('profile', {'id':app.user.id})}}">Profil</a>
+                <a href="{{ path('app_logout') }}">Deconnexion</a>
+            {% endif %}
 
+        </header>
     {% endblock %}
 
-    <div id="content">
-        {% block content %}
+    <div class="main">
+        <div class="container">
+            {% block content %}
 
-        {% endblock %}
+            {% endblock %}
+        </div>
     </div>
 
 
     {% block footer %}
         <footer>
             <div>
-                <h4>Footer</h4>
+                <p>.</p>
             </div>
         </footer>
     {% endblock %}
-
     {% block javascripts %}{% endblock %}
     </body>
 </html>

@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class TrickType extends AbstractType
 {
@@ -17,14 +18,16 @@ class TrickType extends AbstractType
         $builder
             ->add('nom')
             ->add('description')
-            ->add('category')
+            ->add('category', TextType::class, ['label' => 'Categorie'])
             ->add('images', FileType::class, [
-                'label' => 'Images',
+                'label' => 'Fichiers',
                 'mapped' => false,
                 'required' => false,
                 'multiple' => true
             ])
-            ->add('Confirmer', SubmitType::class)
+            ->add('Confirmer', SubmitType::class, [
+                'attr' => ['class' => 'submit'],
+            ]);
         ;
     }
 

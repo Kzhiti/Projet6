@@ -47,19 +47,14 @@ class SecurityController extends AbstractController
             );
 
             $doctrine = $this->getDoctrine()->getManager();
-
-            // On hydrate notre instance $commentaire
             $doctrine->persist($user);
-
-            // On écrit en base de données
             $doctrine->flush();
 
-            // On redirige l'utilisateur
-            return $this->redirectToRoute('app_homepage_index');
+            return $this->redirectToRoute('profile', ['id' => $user->getId()]);
         }
 
         return $this->render('security/profile.html.twig', [
-            'title' => 'Profile',
+            'title' => 'Profil',
             'form' => $form->createView(),
         ]);
     }
