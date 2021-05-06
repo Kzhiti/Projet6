@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+    {% block content %}
+        {% if app.user %}
+            <div class="booking-content">
+                <div class="booking-image">
+                    <img class="booking-img" src="../../public/assets/img/snowboarder-backflip.jpg" alt="Booking Image">
+                </div>
+                <div class="booking-form">
+                    <h1>Modifiez votre profil</h1>
+                    <div>
+                        <img src="{{ asset('/uploads/'~app.user.photo) }}" alt="">
+                    </div>
+                    {{ form(form) }}
+                </div>
+            </div>
+        {% endif %}
+    {% endblock %}
