@@ -1,28 +1,26 @@
 {% extends 'base.html.twig' %}
 
     {% block content %}
-        <div class="content">
+        <h1>Liste des figures
             {% if app.user %}
-                <a class="a-tricks" href="{{path('add_tricks')}}">Ajoutez une figure</a>
+            <a class="a-tricks" href="{{path('add_tricks')}}">Ajouter</a>
             {% endif %}
-            <h1>Liste des figures</h1>
-            {% for trick in tricks %}
-                <div class="content-trick">
+        </h1>
+        {% for trick in tricks %}
+            <div class="trick">
+                <a href="{{path('trick', {'id':trick.id})}}"><img src="{{ asset('/public/uploads/'~trick.getimages.first.url) }}" alt="" width="160"></a>
+                <h3>
+                    <a class="a-tricks-title" href="{{path('trick', {'id':trick.id})}}">{{ trick.nom }}</a>
                     {% if app.user %}
                         <a class="a-tricks" href="{{ path('update_trick', {'id':trick.id}) }}"><img src="../../public/assets/img/stylo.jpg" alt="Booking Image"></a>
                         <a class="a-tricks" href="{{ path('delete_trick', {'id':trick.id}) }}"><img src="../../public/assets/img/corbeille.jpg" alt="Booking Image"></a>
                     {% endif %}
-                    <h2>
-                        <a class="a-tricks-title" href="{{path('trick', {'id':trick.id})}}">{{ trick.nom }}</a>
-                    </h2>
-                    <div>{{ trick.description }}</div>
-                    <div>{{ trick.category }}</div>
-                </div>
-            {% else %}
-                <p>Il n'y aucunes figures pour le moment.</p>
-                {% if app.user %}
-                <p>Ajoutez en une !</p>
-                {% endif %}
-            {% endfor %}
-        </div>
+                </h3>
+            </div>
+        {% else %}
+            <p>Il n'y aucunes figures pour le moment.</p>
+            {% if app.user %}
+            <p>Ajoutez en une !</p>
+            {% endif %}
+        {% endfor %}
     {% endblock %}

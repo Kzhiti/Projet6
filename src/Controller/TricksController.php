@@ -99,20 +99,32 @@ class TricksController extends AbstractController
 
             $trick->setModifiedAt(new \DateTime('now'));
 
+            $images = $form->get('images')->getData();
+            if ($images) {
+                foreach ($images as $image) {
+                    $file = md5(uniqid()) . '.' . $image->guessExtension();
+
+                    $image->move(
+                        $this->getParameter('images_directory'),
+                        $file
+                    );
+
+                    $img = new Images();
+                    $img->setUrl($file);
+                    $trick->addImage($img);
+                }
+            }
+
             $doctrine = $this->getDoctrine()->getManager();
-
-            // On hydrate notre instance $commentaire
             $doctrine->persist($trick);
-
-            // On écrit en base de données
             $doctrine->flush();
 
-            // On redirige l'utilisateur
             return $this->redirectToRoute('tricks');
         }
 
         return $this->render('tricks/update_trick.html.twig', [
             'title' => 'Figures',
+            'trick' => $trick,
             'form' => $form->createView(),
         ]);
     }
@@ -151,5 +163,17 @@ class TricksController extends AbstractController
             'trick' => $trick,
             'comments' => $comments,
         ]);
+    }
+
+    /**
+     * @Route("/delete_image/{id}", name="delete_image")
+     */
+    public function delete_photo($id) {
+        $img = $this->getDoctrine()->getRepository(Images::class)->findOneBy(['id' => $id]);
+
+        $doctrine = $this->getDoctrine()->getManager();
+        $doctrine->remove($img);
+        $doctrine->flush();
+        return $this->redirectToRoute('tricks');
     }
 }

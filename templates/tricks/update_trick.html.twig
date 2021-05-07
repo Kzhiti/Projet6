@@ -1,15 +1,16 @@
 {% extends 'base.html.twig' %}
 
     {% block content %}
-        <div class="booking-content">
-            <div class="booking-image">
-                <img class="booking-img" src="../../public/assets/img/snowboarder-backflip.jpg" alt="Booking Image">
+        <h1 class="form-title">Modifiez une figure</h1>
+        {% if app.user %}
+            <div class="trick-images">
+                {% for image in trick.getimages %}
+                    <img src="{{ asset('/public/uploads/'~image.url) }}" alt="" width="50">
+                    <a href="{{ path('delete_image', {'id':image.id}) }}"><img src="../../public/assets/img/corbeille.jpg" alt="Booking Image"></a>
+                {% endfor %}
             </div>
-            <div class="booking-form">
-                <h1>Modifiez une figure</h1>
-                {% if app.user %}
-                    {{ form(form) }}
-                {% endif %}
+            <div class="trick-form">
+                {{ form(form) }}
             </div>
-        </div>
+        {% endif %}
     {% endblock %}

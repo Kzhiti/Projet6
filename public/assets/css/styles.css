@@ -1,79 +1,78 @@
 body {
     width: 100%;
-    font-size: 14px;
     line-height: 1.8;
-    color: #fff;
-    background: #edb77d;
     font-weight: 400;
     height: 100%;
     margin-left: 0;
     margin-bottom: 0;
-    margin-top: -3px;
 }
 
-footer {
-    position: fixed;
-    bottom: 0;
-}
-
-header {
-    height: 100px;
-    width: 100%;
-    background-color: #111111;
-    text-align: right;
-    justify-content: center;
-}
-
-header h1 {
-    float: left;
-}
-
-
-footer {
-    background-color: black;
-    width: 100%;
-}
-
-.container {
-    width: 1150px;
-    margin: 0 auto;
-    border-radius: 10px;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-}
-
-.booking-form {
-    width: 41.67%;
-    background: #111;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px; }
-
-display-flex, .booking-content {
-    display: flex;
-    display: -webkit-flex; }
-
-.booking-content {
-    flex-wrap: wrap;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap; }
-
-.booking-content h1 {
+.trick-name {
     text-align: center;
 }
 
-.booking-image {
-    width: 58.33%;
+.trick-description {
+    font-size: 20px;
 }
 
-.booking-img {
-    height: 100%;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px; }
+.trick-category {
+    font-size: 12px;
+    text-align: center;
+}
+
+.comment-form {
+    border-top: solid 2px cornflowerblue;
+    border-bottom: solid 2px cornflowerblue;
+    width: calc(100% - 30%);
+    margin: auto;
+}
+
+header {
+    border-bottom: solid 2px cornflowerblue;
+    height: 100px;
+    width: 100%;
+    justify-content: center;
+    text-align: right;
+}
+
+.img-comment {
+    float: right;
+}
+
+.comment {
+    border: solid 2px cornflowerblue;
+    width: calc(100% - 40%);
+    margin: auto;
+    float: right;
+}
+
+.comment-with-img {
+    width: calc(100% - 60%);
+    margin: 20px auto;
+}
+
+.trick-form {
+    width: calc(100% - 40%);
+    margin: auto;
+    border-bottom: solid 2px cornflowerblue;
+    border-top: solid 2px cornflowerblue;
+}
+
+.form-title {
+    text-align: center;
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
+
+.trick-images {
+    text-align: center;
+    padding-bottom: 20px;
+}
 
 header a {
     text-decoration: none;
     width: auto;
-    background: #edb77d;
+    background: cornflowerblue;
     color: #fff;
     padding: 10px;
     font-weight: bold;
@@ -84,9 +83,14 @@ header a {
     cursor: pointer;
 }
 
-.main {
-    padding: 115px 0;
-    position: relative; }
+a:hover {
+    text-decoration: none;
+    color: midnightblue;
+}
+
+header h1 {
+    float: left
+}
 
 a:focus, a:active {
     text-decoration: none;
@@ -95,156 +99,18 @@ a:focus, a:active {
     -moz-transition: all 300ms ease 0s;
     -webkit-transition: all 300ms ease 0s;
     -o-transition: all 300ms ease 0s;
- }
-
-input, select, textarea {
-    outline: none;
-    appearance: unset !important;
-    -moz-appearance: unset !important;
-    -webkit-appearance: unset !important;
- }
-
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
-    appearance: none !important;
-    -moz-appearance: none !important;
-    -webkit-appearance: none !important;
-
-    margin: 0; }
-
-input:focus, select:focus, textarea:focus {
-    outline: none;
-    box-shadow: none !important;
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
- }
-
-input[type=checkbox] {
-    appearance: checkbox !important;
-    -moz-appearance: checkbox !important;
-    -webkit-appearance: checkbox !important;
- }
-
-input[type=radio] {
-    appearance: radio !important;
-    -moz-appearance: radio !important;
-    -webkit-appearance: radio !important;
 }
-
-form {
-    padding: 72px 70px 70px 70px; }
-
-input {
-    transition: 0.3s ease;
-    -moz-transition: 0.3s ease;
-    -webkit-transition: 0.3s ease;
-    -o-transition: 0.3s ease;
-    padding-top: 10px;
-    -webkit-appearance: none; }
-input:focus + .form-label, input:valid + .form-label {
-    top: 1px;
-    font-size: 11px;
-    color: #edb77d; }
-
-input, select {
-    box-sizing: border-box;
-    width: 100%;
-    display: block;
-    border: none;
-    color: #fff;
-    background: transparent;
-    border-bottom: 1px solid #999;
-    padding: 4px 0; }
-input:focus, select:focus {
-    border-bottom: 1px solid #edb77d; }
-
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px transparent inset; }
-
-input::-webkit-input-placeholder {
-    color: #bebebe; }
-input::-moz-placeholder {
-    color: #bebebe; }
-input:-ms-input-placeholder {
-    color: #bebebe; }
-input:-moz-placeholder {
-    color: #bebebe; }
 
 .submit {
-    width: auto;
-    background: #edb77d;
-    color: #fff;
-    margin-top: 10px;
-    padding: 15px 43px;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    cursor: pointer; }
-.submit:hover {
-    background: #e79e50; }
-
-label {
-    font-weight: bold;
-}
-
-.clear {
-    clear: both; }
-
-.content {
-    background-color: #111;
-    border-radius: 10px;
-    padding-bottom: 20px;
-}
-
-.content .a-tricks {
-    float: right;
-    text-decoration: none;
-    width: auto;
-    background: #edb77d;
-    color: #fff;
-    padding: 10px 10px 10px 10px;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    cursor: pointer;
-    margin-top: 5px;
-    margin-right: 5px;
-}
-
-.content-trick {
-    background-color: #edb77d;
-    border-radius: 10px;
-    width: calc(100% - 10%);
-    margin: auto;
-    color: black;
-}
-
-.content-trick h2 {
-    text-align: center;
-}
-
-.a-tricks-title {
-    text-decoration: none;
-    color: black;
-}
-
-.a-tricks-title:visited {
-    color: black;
-}
-
-.a-tricks-title:hover {
+    background-color: cornflowerblue;
     color: white;
 }
 
-.trick-name {
-    text-align: center;
+.submit:hover {
+    color: midnightblue;
 }
 
-.user {
-    background-color: #111;
-    width: fit-content;
-    border-bottom-right-radius: 10px;
+.profile-pic {
+    text-align: center;
+    padding-bottom: 20px;
 }

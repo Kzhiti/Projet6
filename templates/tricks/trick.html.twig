@@ -1,24 +1,25 @@
 {% extends 'base.html.twig' %}
 
     {% block content %}
-        <div class="content">
-            <h1 class="trick-name">{{ trick.nom }}</h1>
-            <h2 class="trick-category">{{ trick.category }}</h2>
-            <p class="trick-description">{{ trick.description }}</p>
-            {% for image in trick.getimages %}
-                <img src="{{ asset('/public/uploads/'~image.url) }}" alt="" width="50">
-            {% endfor %}
-            <h2>Commentaires</h2>
-            {% for comment in comments %}
-                <div class="content-trick">
+        <h1 class="trick-name">{{ trick.nom }}</h1>
+        {% for image in trick.getimages %}
+            <img src="{{ asset('/public/uploads/'~image.url) }}" alt="" width="100">
+        {% endfor %}
+        <p class="trick-description">{{ trick.description }}</p>
+        <p class="trick-category">{{ trick.category }}<p>
+        {% if app.user %}
+            <div class="comment-form">
+                {{ form(form) }}
+            </div>
+        {% endif %}
+        {% for comment in comments %}
+            <div class="comment-with-img">
+                <div class="comment">
                     <p>{{ comment.author.nom}} {{ comment.author.prenom }}</p>
                     <p>{{ comment.description }}</p>
-                    <img src="{{ asset('/public/uploads/'~comment.author.photo) }}" alt="" width="50">
                     <p>{{ comment.createdAt|date("d/m/Y") }}</p>
                 </div>
-            {% endfor %}
-            {% if app.user %}
-            {{ form(form) }}
-            {% endif %}
-        </div>
+                <img class="img-comment" src="{{ asset('/public/uploads/'~comment.author.photo) }}" alt="" width="50">
+            </div>
+        {% endfor %}
     {% endblock %}

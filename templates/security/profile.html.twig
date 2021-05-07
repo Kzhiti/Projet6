@@ -2,17 +2,12 @@
 
     {% block content %}
         {% if app.user %}
-            <div class="booking-content">
-                <div class="booking-image">
-                    <img class="booking-img" src="../../public/assets/img/snowboarder-backflip.jpg" alt="Booking Image">
-                </div>
-                <div class="booking-form">
-                    <h1>Modifiez votre profil</h1>
-                    <div>
-                        <img src="{{ asset('/public/uploads/'~app.user.photo) }}" alt="" width="50">
-                    </div>
-                    {{ form(form) }}
-                </div>
+            <h1 class="form-title">Modifiez votre profil</h1>
+            <div class="profile-pic">
+                <img src="{{ asset('/public/uploads/'~app.user.photo) }}" alt="" width="100">
+            </div>
+            <div class="trick-form">
+                {{ form(form) }}
             </div>
         {% endif %}
     {% endblock %}

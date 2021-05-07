@@ -9,7 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class TrickType extends AbstractType
 {
@@ -18,7 +18,18 @@ class TrickType extends AbstractType
         $builder
             ->add('nom')
             ->add('description')
-            ->add('category', TextType::class, ['label' => 'Categorie'])
+            ->add('category', ChoiceType::class, [
+                'label' => 'Categorie',
+                'choices' => [
+                    'Grabs' => "Grabs",
+                    'Rotations' => "Rotations",
+                    'Flips' => "Flips",
+                    'Rotation Desaxee' => "Rotation Desaxee",
+                    'Slides' => "Slides",
+                    'Old School' => "Old School",
+                    'One Foot Trick' => "One Foot Trick"
+                ],
+            ])
             ->add('images', FileType::class, [
                 'label' => 'Fichiers',
                 'mapped' => false,
@@ -28,7 +39,6 @@ class TrickType extends AbstractType
             ->add('Confirmer', SubmitType::class, [
                 'attr' => ['class' => 'submit'],
             ]);
-        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
