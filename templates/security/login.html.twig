@@ -4,23 +4,25 @@
 
 
     {% block content %}
-        <h1>Veuillez vous connecter</h1>
-        <form method="post">
-            {% if error %}
-                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
-            <label for="inputUsername">Nom de Compte</label>
-            <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>
-            <label for="inputPassword">Mot de Passe</label>
-            <input type="password" name="password" id="inputPassword" class="form-control" required>
+        <h1 class="form-title">Veuillez vous connecter</h1>
+        <div class="form">
+                <form method="post">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+                    <label for="inputUsername">Nom de Compte</label>
+                    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>
+                    <label for="inputPassword">Mot de Passe</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control" required>
 
-            <input type="hidden" name="_csrf_token"
-                   value="{{ csrf_token('authenticate') }}"
-            >
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
 
-            <button class="submit" type="submit">
-                Connexion
-            </button>
-        </form>
+                    <button class="submit" type="submit">
+                        Connexion
+                    </button>
+                </form>
+        </div>
         {% endblock %}
 

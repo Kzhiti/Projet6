@@ -10,6 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 
 class TrickType extends AbstractType
 {
@@ -24,14 +26,14 @@ class TrickType extends AbstractType
                     'Grabs' => "Grabs",
                     'Rotations' => "Rotations",
                     'Flips' => "Flips",
-                    'Rotation Desaxee' => "Rotation Desaxee",
+                    'Rotation Désaxée' => "Rotation Désaxée",
                     'Slides' => "Slides",
                     'Old School' => "Old School",
                     'One Foot Trick' => "One Foot Trick"
                 ],
             ])
             ->add('images', FileType::class, [
-                'label' => 'Fichiers',
+                'label' => 'Images',
                 'mapped' => false,
                 'required' => false,
                 'multiple' => true

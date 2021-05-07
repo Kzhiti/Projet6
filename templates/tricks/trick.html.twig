@@ -2,9 +2,11 @@
 
     {% block content %}
         <h1 class="trick-name">{{ trick.nom }}</h1>
-        {% for image in trick.getimages %}
-            <img src="{{ asset('/public/uploads/'~image.url) }}" alt="" width="100">
-        {% endfor %}
+        <div class="trick-images">
+            {% for image in trick.getimages %}
+                <img src="{{ asset('/public/uploads/'~image.url) }}" alt="" width="100">
+            {% endfor %}
+        </div>
         <p class="trick-description">{{ trick.description }}</p>
         <p class="trick-category">{{ trick.category }}<p>
         {% if app.user %}
@@ -15,9 +17,9 @@
         {% for comment in comments %}
             <div class="comment-with-img">
                 <div class="comment">
-                    <p>{{ comment.author.nom}} {{ comment.author.prenom }}</p>
-                    <p>{{ comment.description }}</p>
-                    <p>{{ comment.createdAt|date("d/m/Y") }}</p>
+                    <p class="comment-name">{{ comment.author.nom}} {{ comment.author.prenom }}</p>
+                    <p class="comment-description">{{ comment.description }}</p>
+                    <p class="comment-date">{{ comment.createdAt|date("d/m/Y") }}</p>
                 </div>
                 <img class="img-comment" src="{{ asset('/public/uploads/'~comment.author.photo) }}" alt="" width="50">
             </div>

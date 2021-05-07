@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Videos;
 use App\Form\CommentType;
 use App\Form\TrickType;
 use App\Entity\Comments;
@@ -174,6 +175,6 @@ class TricksController extends AbstractController
         $doctrine = $this->getDoctrine()->getManager();
         $doctrine->remove($img);
         $doctrine->flush();
-        return $this->redirectToRoute('tricks');
+        return $this->redirectToRoute('update_trick', ['id' => $img->getTrick()->getId()]);
     }
 }
