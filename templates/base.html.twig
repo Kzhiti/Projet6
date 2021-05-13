@@ -19,12 +19,12 @@
             <h3>SnowTricks</h3>
             <nav class="head-nav">
                 <a href="{{path('app_homepage_index')}}">Accueil</a>
-                <a href="{{path('tricks')}}">Figure</a>
                 {% if not app.user %}
                     <a href="{{path('app_login')}}">Connexion</a>
                     <a href="{{path('app_register')}}">Inscription</a>
                 {% endif %}
                 {% if app.user %}
+                    <a href="{{path('add_tricks')}}">Ajouter une figure</a>
                     <a href="{{path('profile', {'id':app.user.id})}}">Profil</a>
                     <a href="{{ path('app_logout') }}">Deconnexion</a>
                 {% endif %}

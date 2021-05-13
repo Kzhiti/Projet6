@@ -47,7 +47,7 @@ class TricksController extends AbstractController
 
             $trick->setModifiedAt(new \DateTime('now'));
 
-            $trick->setSlug('t1');
+            $trick->setSlug($form->get('nom')->getData());
 
             $images = $form->get('images')->getData();
             if ($images) {
@@ -64,6 +64,14 @@ class TricksController extends AbstractController
                     $trick->addImage($img);
                 }
             }
+
+            /*$videos = $form->get('videos')->getData();
+            if ($videos) {
+                var_dump($videos);
+                $video = new Videos();
+                $video->setUrl($videos['url']);
+                $trick->addVideo($video);
+            }*/
 
             $doctrine = $this->getDoctrine()->getManager();
             $doctrine->persist($trick);
@@ -116,6 +124,13 @@ class TricksController extends AbstractController
                 }
             }
 
+            /*$videos = $form->get('videos')->getData();
+            if ($videos) {
+                $video = new Videos();
+                $video->setUrl($videos['url']);
+                $trick->addVideo($video);
+            }*/
+
             $doctrine = $this->getDoctrine()->getManager();
             $doctrine->persist($trick);
             $doctrine->flush();
@@ -131,10 +146,10 @@ class TricksController extends AbstractController
     }
 
     /**
-     * @Route("/trick/{id}", name="trick")
+     * @Route("/trick/{slug}", name="trick")
      */
-    public function trick($id, Request $request) {
-        $trick = $this->getDoctrine()->getRepository(Tricks::class)->findOneBy(['id' => $id]);
+    public function trick($slug, Request $request) {
+        $trick = $this->getDoctrine()->getRepository(Tricks::class)->findOneBy(['slug' => $slug]);
 
         $comments = $this->getDoctrine()->getRepository(Comments::class)->findBy([
             'trick_parent' => $trick,
@@ -156,7 +171,7 @@ class TricksController extends AbstractController
             $doctrine->flush();
 
             // On redirige l'utilisateur
-            return $this->redirectToRoute('trick', ['id' => $id]);
+            return $this->redirectToRoute('trick', ['slug' => $slug]);
         }
 
         return $this->render('tricks/trick.html.twig', [

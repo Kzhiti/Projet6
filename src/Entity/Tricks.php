@@ -77,7 +77,6 @@ class Tricks
     public function __construct()
     {
         $this->comments = new ArrayCollection();
-        $this->video = new ArrayCollection();
         $this->image = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->videos = new ArrayCollection();

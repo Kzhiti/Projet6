@@ -5,12 +5,12 @@
         {% for trick in tricks %}
             <div class="trick">
                 {% if trick.getimages.first %}
-                    <a href="{{path('trick', {'id':trick.id})}}"><img src="{{ asset('/public/uploads/'~trick.getimages.first.url) }}" alt="" width="160"></a>
+                    <a href="{{path('trick', {'slug':trick.slug})}}"><img src="{{ asset('/public/uploads/'~trick.getimages.first.url) }}" alt="" width="160"></a>
                 {% else %}
-                    <a href="{{path('trick', {'id':trick.id})}}"><img src="../../public/assets/img/blank-profile-picture-973460_1280.png" alt="" width="160" height="213.33"></a>
+                    <a href="{{path('trick', {'slug':trick.slug})}}"><img src="../../public/assets/img/blank-profile-picture-973460_1280.png" alt="" width="160" height="213.33"></a>
                 {% endif %}
                 <h3>
-                    <a class="a-tricks-title" href="{{path('trick', {'id':trick.id})}}">{{ trick.nom }}</a>
+                    <a class="a-tricks-title" href="{{path('trick', {'slug':trick.slug})}}">{{ trick.nom }}</a>
                     {% if app.user %}
                         <a class="a-tricks" href="{{ path('update_trick', {'id':trick.id}) }}"><img src="../../public/assets/img/stylo.jpg" alt="Booking Image"></a>
                         <a class="a-tricks" href="{{ path('delete_trick', {'id':trick.id}) }}"><img src="../../public/assets/img/corbeille.jpg" alt="Booking Image"></a>
@@ -21,13 +21,7 @@
             <p>Il n'y aucunes figures pour le moment.</p>
             {% if app.user %}
             <p>Ajoutez en une !</p>
-                {% if app.user %}
-                    <a class="a-tricks" href="{{path('add_tricks')}}"><img class="plus" src="../../public/assets/img/plus.jpg" alt="Booking Image"></a>
-                {% endif %}
             {% endif %}
         {% endfor %}
-        {% if app.user %}
-            <a class="a-tricks" href="{{path('add_tricks')}}"><img class="plus" src="../../public/assets/img/plus.jpg" alt="Booking Image"></a>
-        {% endif %}
         </div>
     {% endblock %}

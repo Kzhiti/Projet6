@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 
 class TrickType extends AbstractType
@@ -31,6 +32,11 @@ class TrickType extends AbstractType
                     'Old School' => "Old School",
                     'One Foot Trick' => "One Foot Trick"
                 ],
+            ])
+            ->add('videos', VideoType::class, [
+                'data_class' => null,
+                'label' => false,
+                'required' => false,
             ])
             ->add('images', FileType::class, [
                 'label' => 'Images',
