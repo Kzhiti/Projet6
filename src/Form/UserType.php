@@ -29,7 +29,7 @@ class UserType extends AbstractType
                 'required' => true
             ])
             ->add('Confirmer', SubmitType::class, [
-                'attr' => ['class' => 'submit'],
+                'attr' => ['class' => 'w-100 btn btn-primary btn-lg'],
             ]);
         ;
     }

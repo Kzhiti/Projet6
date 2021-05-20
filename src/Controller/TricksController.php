@@ -38,7 +38,9 @@ class TricksController extends AbstractController
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash('success', 'Votre figure a bien été ajoutée !');
             // Hydrate notre commentaire avec l'article
             $trick->setAuthor($this->getUser());
 
@@ -65,8 +67,8 @@ class TricksController extends AbstractController
                 }
             }
 
-            /*$videos = $form->get('videos')->getData();
-            if ($videos) {
+            $videos = $form->get('videos')->getData();
+            /*if ($videos) {
                 var_dump($videos);
                 $video = new Videos();
                 $video->setUrl($videos['url']);
@@ -105,7 +107,7 @@ class TricksController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $this->addFlash('success', 'Votre figure a bien été modifiée !');
             $trick->setModifiedAt(new \DateTime('now'));
 
             $images = $form->get('images')->getData();

@@ -1,27 +1,49 @@
 {% extends 'base.html.twig' %}
 
     {% block content %}
-        <div class="container">
-        {% for trick in tricks %}
-            <div class="trick">
-                {% if trick.getimages.first %}
-                    <a href="{{path('trick', {'slug':trick.slug})}}"><img src="{{ asset('/public/uploads/'~trick.getimages.first.url) }}" alt="" width="160"></a>
-                {% else %}
-                    <a href="{{path('trick', {'slug':trick.slug})}}"><img src="../../public/assets/img/blank-profile-picture-973460_1280.png" alt="" width="160" height="213.33"></a>
-                {% endif %}
-                <h3>
-                    <a class="a-tricks-title" href="{{path('trick', {'slug':trick.slug})}}">{{ trick.nom }}</a>
-                    {% if app.user %}
-                        <a class="a-tricks" href="{{ path('update_trick', {'id':trick.id}) }}"><img src="../../public/assets/img/stylo.jpg" alt="Booking Image"></a>
-                        <a class="a-tricks" href="{{ path('delete_trick', {'id':trick.id}) }}"><img src="../../public/assets/img/corbeille.jpg" alt="Booking Image"></a>
-                    {% endif %}
-                </h3>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
             </div>
-        {% else %}
-            <p>Il n'y aucunes figures pour le moment.</p>
-            {% if app.user %}
-            <p>Ajoutez en une !</p>
-            {% endif %}
         {% endfor %}
-        </div>
+        <main>
+            <section class="py-5 text-center container">
+                <div class="row py-lg-5">
+                    <div class="col-lg-6 col-md-8 mx-auto text-center">
+                        <h1 class="fw-light">Bienvenue sur SnowTricks</h1>
+                        <p class="lead text-muted">Ici, vous pouvez vous communiquer sur vos figures de snowboard préférées et intéragir avec beaucoup d'autres adorateurs de la glisse !</p>
+                    </div>
+                </div>
+            </section>
+            <div class="album py-5 bg-light">
+                <div class="container">
+
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    {% for trick in tricks %}
+                        <div class="col-sm-3">
+                            <div class="card border-dark mb-3" style="max-width: 18rem;">
+                                {% if trick.getimages.first %}
+                                    <a href="{{path('trick', {'slug':trick.slug})}}"><img class="card-img-top" src="{{ asset('/public/uploads/'~trick.getimages.first.url) }}" alt="" width="160"></a>
+                                {% else %}
+                                    <a href="{{path('trick', {'slug':trick.slug})}}"><img class="card-img-top" src="../../public/assets/img/blank-profile-picture-973460_1280.png" alt="" width="160"></a>
+                                {% endif %}
+                                <div class="card-body">
+                                    <a href="{{path('trick', {'slug':trick.slug})}}" class="btn btn-primary">{{ trick.nom }}</a>
+                                    {% if app.user %}
+                                        <a class="a-tricks" href="{{ path('update_trick', {'id':trick.id}) }}"><img src="../../public/assets/img/stylo.jpg" alt="Booking Image"></a>
+                                        <a class="a-tricks" href="{{ path('delete_trick', {'id':trick.id}) }}"><img src="../../public/assets/img/corbeille.jpg" alt="Booking Image"></a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <p>Il n'y aucunes figures pour le moment.</p>
+                        {% if app.user %}
+                        <p>Ajoutez en une !</p>
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </main>
     {% endblock %}

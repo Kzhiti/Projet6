@@ -21,14 +21,17 @@
                 {{ form(form) }}
             </div>
         {% endif %}
-        {% for comment in comments %}
-            <div class="comment-with-img">
-                <div class="comment">
-                    <p class="comment-name">{{ comment.author.nom}} {{ comment.author.prenom }}</p>
-                    <p class="comment-description">{{ comment.description }}</p>
-                    <p class="comment-date">{{ comment.createdAt|date("d/m/Y") }}</p>
+        <div class="container mt-5" style="background-color: #f8f9fa">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-8">
+                    {% for comment in comments %}
+                    <div class="card p-3 mt-2">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="user d-flex flex-row align-items-center"> <img src="{{ asset('/public/uploads/'~comment.author.photo) }}" width="30" class="user-img rounded-circle mr-2"> <span><small class="font-weight-bold text-primary">{{ comment.author.nom}} {{ comment.author.prenom }}</small> <small class="font-weight-bold">{{ comment.description }}</small></span> </div> <small>{{ comment.createdAt|date("d/m/Y") }}</small>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
-                <img class="img-comment" src="{{ asset('/public/uploads/'~comment.author.photo) }}" alt="" width="50">
             </div>
-        {% endfor %}
+        </div>
     {% endblock %}

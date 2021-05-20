@@ -22,13 +22,17 @@
     <list default="true" id="68a7da11-aaed-4edc-97d8-75ede29dafda" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HomepageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomepageController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/TricksController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TricksController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Tricks.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Tricks.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Form/TrickType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/TrickType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/register.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/profile.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/profile.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/tricks/add_trick.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tricks/add_trick.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/tricks/trick.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tricks/trick.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/tricks/tricks.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tricks/tricks.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/tricks/update_trick.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tricks/update_trick.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +48,7 @@
       <list>
         <option value="composer.json" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -210,7 +215,9 @@
       <workItem from="1620376682990" duration="21900000" />
       <workItem from="1620404197316" duration="423000" />
       <workItem from="1620831551119" duration="6787000" />
-      <workItem from="1620910308833" duration="2293000" />
+      <workItem from="1620910308833" duration="2629000" />
+      <workItem from="1620923563480" duration="3923000" />
+      <workItem from="1621492371298" duration="14079000" />
     </task>
     <servers />
   </component>

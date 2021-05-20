@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Tricks;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -20,7 +21,7 @@ class TrickType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('description')
+            ->add('description', TextareaType::class)
             ->add('category', ChoiceType::class, [
                 'label' => 'Categorie',
                 'choices' => [
@@ -45,7 +46,7 @@ class TrickType extends AbstractType
                 'multiple' => true
             ])
             ->add('Confirmer', SubmitType::class, [
-                'attr' => ['class' => 'submit'],
+                'attr' => ['class' => 'w-100 btn btn-primary btn-lg'],
             ]);
     }
 

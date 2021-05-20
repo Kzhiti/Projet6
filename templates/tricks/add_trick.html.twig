@@ -1,10 +1,45 @@
 {% extends 'base.html.twig' %}
 
     {% block content %}
-        <h1 class="form-title">Ajoutez une figure</h1>
-        {% if app.user %}
-            <div class="trick-form">
-                {{ form(form) }}
-            </div>
-        {% endif %}
+        <div class="container">
+            <main>
+                <div class="py-5 text-center">
+                    <h2>Ajouter une Figure</h2>
+                    <p class="lead">Veuillez remplir les informations de la figure que vous souhaitez créer</p>
+                </div>
+
+                <div class="row g-5">
+                    <div class="col-md-7 col-lg-8">
+                        <h4 class="mb-3">Nouvelle Figure</h4>
+                        {{ form_start(form) }}
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    {{ form_row(form.nom) }}
+                                </div>
+
+                                <div class="col-12">
+                                    {{ form_row(form.description) }}
+                                </div>
+
+                                <div class="col-12">
+                                    {{ form_row(form.category) }}
+                                </div>
+
+                                <div class="col-12">
+                                    {{ form_row(form.videos) }}
+                                </div>
+
+                                <div class="col-12">
+                                    {{ form_row(form.images) }}
+                                </div>
+                            </div>
+
+                            <hr class="my-4">
+
+                        {{ form_row(form.Confirmer) }}
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </main>
+        </div>
     {% endblock %}
