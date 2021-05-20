@@ -292,8 +292,13 @@ a:focus, a:active {
 
 .videos {
     padding-top: 10px;
+    text-align: center;
 }
 
 legend {
     display: none!important;
+}
+
+#trick_videos {
+    display:none;
 }

@@ -23,7 +23,7 @@
                 <div class="videos">
                     {% for video in trick.getvideos %}
                         <iframe width="280" height="157.5" src="{{ video.url }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        <a href="{{ path('delete_video', {'id':video.id}) }}"><img src="../../public/assets/img/corbeille.jpg" alt="Booking Image"></a>
+                        <a class="bin" href="{{ path('delete_video', {'id':video.id}) }}"><img src="../../public/assets/img/corbeille.jpg" alt="Booking Image"></a>
                     {% endfor %}
                 </div>
 
