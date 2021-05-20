@@ -20,6 +20,13 @@
                     {% endfor %}
                 </div>
 
+                <div class="videos">
+                    {% for video in trick.getvideos %}
+                        <iframe width="280" height="157.5" src="{{ video.url }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <a href="{{ path('delete_video', {'id':video.id}) }}"><img src="../../public/assets/img/corbeille.jpg" alt="Booking Image"></a>
+                    {% endfor %}
+                </div>
+
                 <div class="row g-5">
                     <div class="col-md-7 col-lg-8">
                         <h4 class="mb-3">Figure Actuelle</h4>
@@ -38,7 +45,7 @@
                             </div>
 
                             <div class="col-12">
-                                {{ form_row(form.videos) }}
+                                {{ form_row(form.videos.vars.prototype) }}
                             </div>
 
                             <div class="col-12">

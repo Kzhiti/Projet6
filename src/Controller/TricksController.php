@@ -67,13 +67,9 @@ class TricksController extends AbstractController
                 }
             }
 
-            $videos = $form->get('videos')->getData();
-            /*if ($videos) {
-                var_dump($videos);
-                $video = new Videos();
-                $video->setUrl($videos['url']);
-                $trick->addVideo($video);
-            }*/
+            foreach ($trick->getVideos() as $video) {
+                $video->setTrickParent($trick);
+            }
 
             $doctrine = $this->getDoctrine()->getManager();
             $doctrine->persist($trick);
@@ -126,12 +122,9 @@ class TricksController extends AbstractController
                 }
             }
 
-            /*$videos = $form->get('videos')->getData();
-            if ($videos) {
-                $video = new Videos();
-                $video->setUrl($videos['url']);
-                $trick->addVideo($video);
-            }*/
+            foreach ($trick->getVideos() as $video) {
+                $video->setTrickParent($trick);
+            }
 
             $doctrine = $this->getDoctrine()->getManager();
             $doctrine->persist($trick);
@@ -193,5 +186,17 @@ class TricksController extends AbstractController
         $doctrine->remove($img);
         $doctrine->flush();
         return $this->redirectToRoute('update_trick', ['id' => $img->getTrick()->getId()]);
+    }
+
+    /**
+     * @Route("/delete_video/{id}", name="delete_video")
+     */
+    public function delete_video($id) {
+        $video = $this->getDoctrine()->getRepository(Videos::class)->findOneBy(['id' => $id]);
+
+        $doctrine = $this->getDoctrine()->getManager();
+        $doctrine->remove($video);
+        $doctrine->flush();
+        return $this->redirectToRoute('update_trick', ['id' => $video->getTrickParent()->getId()]);
     }
 }

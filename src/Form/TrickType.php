@@ -21,7 +21,9 @@ class TrickType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('description', TextareaType::class)
+            ->add('description', TextareaType::class, [
+                'attr' => ['onInput' => 'this.parentNode.dataset.replicatedValue = this.value'],
+            ])
             ->add('category', ChoiceType::class, [
                 'label' => 'Categorie',
                 'choices' => [
@@ -34,11 +36,16 @@ class TrickType extends AbstractType
                     'One Foot Trick' => "One Foot Trick"
                 ],
             ])
-            ->add('videos', VideoType::class, [
-                'data_class' => null,
+          /*  ->add('videos', VideoType::class, [
                 'label' => false,
                 'required' => false,
-            ])
+            ])*/
+          ->add('videos', CollectionType::class, [
+              'entry_type' => VideoType::class,
+              'allow_add' => true,
+              'allow_delete' => true,
+              'prototype' => true
+          ])
             ->add('images', FileType::class, [
                 'label' => 'Images',
                 'mapped' => false,
