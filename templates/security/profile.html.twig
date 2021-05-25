@@ -1,18 +1,49 @@
 {% extends 'base.html.twig' %}
 
     {% block content %}
-        {% if app.user %}
-            <div class="booking-content">
-                <div class="booking-image">
-                    <img class="booking-img" src="../../public/assets/img/snowboarder-backflip.jpg" alt="Booking Image">
+        <div class="container">
+            <main>
+                <div class="py-5 text-center">
+                    <h2>Votre Profil</h2>
+                    <p class="lead">Veuillez renseigner vos informations personnelles</p>
                 </div>
-                <div class="booking-form">
-                    <h1>Modifiez votre profil</h1>
-                    <div>
-                        <img src="{{ asset('/uploads/'~app.user.photo) }}" alt="">
+
+                <div class="row g-5">
+                    <div class="col-md-5 col-lg-4 order-md-last">
+                        <h4 class="mb-3">Votre photo de profil</h4>
+                        <img src="{{ asset('/public/uploads/'~app.user.photo) }}" alt="" width="100">
                     </div>
-                    {{ form(form) }}
+                    <div class="col-md-7 col-lg-8">
+                        <h4 class="mb-3">Vos Informations</h4>
+                        {{ form_start(form) }}
+                        <div class="row g-3">
+                            <div class="col-12">
+                                {{ form_row(form.username) }}
+                            </div>
+
+                            <div class="col-12">
+                                {{ form_row(form.nom) }}
+                            </div>
+
+                            <div class="col-12">
+                                {{ form_row(form.prenom) }}
+                            </div>
+
+                            <div class="col-12">
+                                {{ form_row(form.images) }}
+                            </div>
+
+                            <div class="col-12">
+                                {{ form_row(form.password) }}
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        {{ form_row(form.Confirmer) }}
+                        {{ form_end(form) }}
+                    </div>
                 </div>
-            </div>
-        {% endif %}
+            </main>
+        </div>
     {% endblock %}

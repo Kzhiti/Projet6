@@ -24,9 +24,8 @@ class Videos
 
     /**
      * @ORM\ManyToOne(targetEntity=Tricks::class, inversedBy="videos")
-     * @ORM\JoinColumn(nullable=false)
      */
-    private $trick;
+    private $trick_parent;
 
     public function getId(): ?int
     {
@@ -45,14 +44,14 @@ class Videos
         return $this;
     }
 
-    public function getTrick(): ?Tricks
+    public function getTrickParent(): ?Tricks
     {
-        return $this->trick;
+        return $this->trick_parent;
     }
 
-    public function setTrick(?Tricks $trick): self
+    public function setTrickParent(?Tricks $trick_parent): self
     {
-        $this->trick = $trick;
+        $this->trick_parent = $trick_parent;
 
         return $this;
     }

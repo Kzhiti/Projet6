@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Videos;
 use App\Form\CommentType;
 use App\Form\TrickType;
 use App\Entity\Comments;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -37,7 +39,9 @@ class TricksController extends AbstractController
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash('success', 'Votre figure a bien été ajoutée !');
             // Hydrate notre commentaire avec l'article
             $trick->setAuthor($this->getUser());
 
@@ -46,7 +50,7 @@ class TricksController extends AbstractController
 
             $trick->setModifiedAt(new \DateTime('now'));
 
-            $trick->setSlug('t1');
+            $trick->setSlug($form->get('nom')->getData());
 
             $images = $form->get('images')->getData();
             if ($images) {
@@ -62,6 +66,10 @@ class TricksController extends AbstractController
                     $img->setUrl($file);
                     $trick->addImage($img);
                 }
+            }
+
+            foreach ($trick->getVideos() as $video) {
+                $video->setTrickParent($trick);
             }
 
             $doctrine = $this->getDoctrine()->getManager();
@@ -96,36 +104,58 @@ class TricksController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $this->addFlash('success', 'Votre figure a bien été modifiée !');
             $trick->setModifiedAt(new \DateTime('now'));
 
+            $images = $form->get('images')->getData();
+            if ($images) {
+                foreach ($images as $image) {
+                    $file = md5(uniqid()) . '.' . $image->guessExtension();
+
+                    $image->move(
+                        $this->getParameter('images_directory'),
+                        $file
+                    );
+
+                    $img = new Images();
+                    $img->setUrl($file);
+                    $trick->addImage($img);
+                }
+            }
+
+            foreach ($trick->getVideos() as $video) {
+                $video->setTrickParent($trick);
+            }
+
             $doctrine = $this->getDoctrine()->getManager();
-
-            // On hydrate notre instance $commentaire
             $doctrine->persist($trick);
-
-            // On écrit en base de données
             $doctrine->flush();
 
-            // On redirige l'utilisateur
             return $this->redirectToRoute('tricks');
         }
 
         return $this->render('tricks/update_trick.html.twig', [
             'title' => 'Figures',
+            'trick' => $trick,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/trick/{id}", name="trick")
+     * @Route("/trick/{slug}", name="trick")
      */
-    public function trick($id, Request $request) {
-        $trick = $this->getDoctrine()->getRepository(Tricks::class)->findOneBy(['id' => $id]);
+    public function trick($slug, Request $request, PaginatorInterface $paginator) {
+        $trick = $this->getDoctrine()->getRepository(Tricks::class)->findOneBy(['slug' => $slug]);
 
-        $comments = $this->getDoctrine()->getRepository(Comments::class)->findBy([
+        $donnees = $this->getDoctrine()->getRepository(Comments::class)->findBy([
             'trick_parent' => $trick,
         ],['created_at' => 'desc']);
+
+        $comments = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            10
+        );
 
         $comment = new Comments();
         $form = $this->createForm(CommentType::class, $comment);
@@ -143,7 +173,7 @@ class TricksController extends AbstractController
             $doctrine->flush();
 
             // On redirige l'utilisateur
-            return $this->redirectToRoute('trick', ['id' => $id]);
+            return $this->redirectToRoute('trick', ['slug' => $slug]);
         }
 
         return $this->render('tricks/trick.html.twig', [
@@ -151,5 +181,29 @@ class TricksController extends AbstractController
             'trick' => $trick,
             'comments' => $comments,
         ]);
+    }
+
+    /**
+     * @Route("/delete_image/{id}", name="delete_image")
+     */
+    public function delete_photo($id) {
+        $img = $this->getDoctrine()->getRepository(Images::class)->findOneBy(['id' => $id]);
+
+        $doctrine = $this->getDoctrine()->getManager();
+        $doctrine->remove($img);
+        $doctrine->flush();
+        return $this->redirectToRoute('update_trick', ['id' => $img->getTrick()->getId()]);
+    }
+
+    /**
+     * @Route("/delete_video/{id}", name="delete_video")
+     */
+    public function delete_video($id) {
+        $video = $this->getDoctrine()->getRepository(Videos::class)->findOneBy(['id' => $id]);
+
+        $doctrine = $this->getDoctrine()->getManager();
+        $doctrine->remove($video);
+        $doctrine->flush();
+        return $this->redirectToRoute('update_trick', ['id' => $video->getTrickParent()->getId()]);
     }
 }

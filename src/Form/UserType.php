@@ -17,7 +17,6 @@ class UserType extends AbstractType
     {
         $builder
             ->add('username', TextType::class, ['label' => 'Nom de Compte'])
-            ->add('password')
             ->add('nom')
             ->add('prenom')
             ->add('images', FileType::class, [
@@ -25,8 +24,12 @@ class UserType extends AbstractType
                 'mapped' => false,
                 'required' => false
             ])
+            ->add('password', PasswordType::class, [
+                'label' => 'Entrez votre Mot de Passe',
+                'required' => true
+            ])
             ->add('Confirmer', SubmitType::class, [
-                'attr' => ['class' => 'submit'],
+                'attr' => ['class' => 'w-100 btn btn-primary btn-lg'],
             ]);
         ;
     }

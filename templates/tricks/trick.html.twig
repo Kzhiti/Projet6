@@ -1,24 +1,38 @@
 {% extends 'base.html.twig' %}
 
     {% block content %}
-        <div class="content">
-            <h1 class="trick-name">{{ trick.nom }}</h1>
-            <h2 class="trick-category">{{ trick.category }}</h2>
-            <p class="trick-description">{{ trick.description }}</p>
-            {% for image in trick.getimages %}
-                <img src="{{ asset('/uploads/'~image.url) }}" alt="">
-            {% endfor %}
-            <h2>Commentaires</h2>
-            {% for comment in comments %}
-                <div class="content-trick">
-                    <p>{{ comment.author.nom}} {{ comment.author.prenom }}</p>
-                    <p>{{ comment.description }}</p>
-                    <img src="{{ asset('/uploads/'~comment.author.photo) }}" alt="">
-                    <p>{{ comment.createdAt|date("d/m/Y") }}</p>
+        <h1 class="trick-name">{{ trick.nom }}</h1>
+        <div class="trick-images">
+            <div class="images">
+                {% for image in trick.getimages %}
+                    <img src="{{ asset('/public/uploads/'~image.url) }}" alt="" width="100">
+                {% endfor %}
+            </div>
+            <div class="videos">
+                {% for video in trick.getvideos %}
+                    <iframe width="280" height="157.5" src="{{ video.url }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                {% endfor %}
+            </div>
+        </div>
+        <p class="trick-description">{{ trick.description }}</p>
+        <p class="trick-category">{{ trick.category }}<p>
+        {% if app.user %}
+            <div class="comment-form">
+                {{ form(form) }}
+            </div>
+        {% endif %}
+        <div class="container mt-5" style="background-color: #f8f9fa">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-8">
+                    {% for comment in comments %}
+                    <div class="card p-3 mt-2">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="user d-flex flex-row align-items-center"> <img src="{{ asset('/public/uploads/'~comment.author.photo) }}" width="30" class="user-img rounded-circle mr-2"> <span><small class="font-weight-bold text-primary">{{ comment.author.nom}} {{ comment.author.prenom }}</small> <small class="font-weight-bold">{{ comment.description }}</small></span> </div> <small>{{ comment.createdAt|date("d/m/Y") }}</small>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {{ knp_pagination_render(comments) }}
                 </div>
-            {% endfor %}
-            {% if app.user %}
-            {{ form(form) }}
-            {% endif %}
+            </div>
         </div>
     {% endblock %}

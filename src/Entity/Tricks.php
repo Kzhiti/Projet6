@@ -28,7 +28,7 @@ class Tricks
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=5000)
      */
     private $description;
 
@@ -65,19 +65,18 @@ class Tricks
     private $comments;
 
     /**
-     * @ORM\OneToMany(targetEntity=Videos::class, mappedBy="trick", orphanRemoval=true)
-     */
-    private $videos;
-
-    /**
      * @ORM\OneToMany(targetEntity=Images::class, mappedBy="trick", cascade={"persist"}, orphanRemoval=true)
      */
     private $images;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Videos::class, mappedBy="trick_parent", cascade={"persist"}, orphanRemoval=true)
+     */
+    private $videos;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
-        $this->video = new ArrayCollection();
         $this->image = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->videos = new ArrayCollection();
@@ -203,44 +202,6 @@ class Tricks
     }
 
     /**
-     * @return Collection|Video[]
-     */
-    public function getVideo(): Collection
-    {
-        return $this->video;
-    }
-
-    public function addVideo(Video $video): self
-    {
-        if (!$this->video->contains($video)) {
-            $this->video[] = $video;
-            $video->setTrick($this);
-        }
-
-        return $this;
-    }
-
-    public function removeVideo(Video $video): self
-    {
-        if ($this->video->removeElement($video)) {
-            // set the owning side to null (unless already changed)
-            if ($video->getTrick() === $this) {
-                $video->setTrick(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Videos[]
-     */
-    public function getVideos(): Collection
-    {
-        return $this->videos;
-    }
-
-    /**
      * @return Collection|Images[]
      */
     public function getImages(): Collection
@@ -264,6 +225,36 @@ class Tricks
             // set the owning side to null (unless already changed)
             if ($image->getTrick() === $this) {
                 $image->setTrick(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Videos[]
+     */
+    public function getVideos(): Collection
+    {
+        return $this->videos;
+    }
+
+    public function addVideo(Videos $video): self
+    {
+        if (!$this->videos->contains($video)) {
+            $this->videos[] = $video;
+            $video->setTrickParent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVideo(Videos $video): self
+    {
+        if ($this->videos->removeElement($video)) {
+            // set the owning side to null (unless already changed)
+            if ($video->getTrickParent() === $this) {
+                $video->setTrickParent(null);
             }
         }
 
