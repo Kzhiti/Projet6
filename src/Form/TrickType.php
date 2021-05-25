@@ -36,13 +36,8 @@ class TrickType extends AbstractType
                     'One Foot Trick' => "One Foot Trick"
                 ],
             ])
-          /*  ->add('videos', VideoType::class, [
-                'label' => false,
-                'required' => false,
-            ])*/
           ->add('videos', CollectionType::class, [
               'entry_type' => VideoType::class,
-              'required' => false,
               'allow_add' => true,
               'allow_delete' => true,
               'prototype' => true
@@ -50,7 +45,6 @@ class TrickType extends AbstractType
             ->add('images', FileType::class, [
                 'label' => 'Images',
                 'mapped' => false,
-                'required' => false,
                 'multiple' => true
             ])
             ->add('Confirmer', SubmitType::class, [

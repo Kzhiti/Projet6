@@ -6,6 +6,7 @@ use App\Entity\Videos;
 use App\Form\CommentType;
 use App\Form\TrickType;
 use App\Entity\Comments;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -143,12 +144,18 @@ class TricksController extends AbstractController
     /**
      * @Route("/trick/{slug}", name="trick")
      */
-    public function trick($slug, Request $request) {
+    public function trick($slug, Request $request, PaginatorInterface $paginator) {
         $trick = $this->getDoctrine()->getRepository(Tricks::class)->findOneBy(['slug' => $slug]);
 
-        $comments = $this->getDoctrine()->getRepository(Comments::class)->findBy([
+        $donnees = $this->getDoctrine()->getRepository(Comments::class)->findBy([
             'trick_parent' => $trick,
         ],['created_at' => 'desc']);
+
+        $comments = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            10
+        );
 
         $comment = new Comments();
         $form = $this->createForm(CommentType::class, $comment);

@@ -18,8 +18,12 @@ body {
 }
 
 .trick-category {
-    font-size: 12px;
+    font-size: 15px;
     text-align: center;
+    border: solid 2px darkgray;
+    width: max-content;
+    margin: auto;
+    border-radius: 10px;
 }
 
 .comment-form {
@@ -301,4 +305,17 @@ legend {
 
 #trick_videos {
     display:none;
+}
+
+.pagination {
+    justify-content: space-evenly;
+}
+
+.pagination a {
+    text-decoration: none!important;
+}
+
+.badge {
+    color: red!important;
+    box-shadow: none!important;
 }
