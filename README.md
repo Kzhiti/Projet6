@@ -1,3 +1,5 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/0c3dc0ad0ebf601580f4/maintainability)](https://codeclimate.com/github/Kzhiti/Projet6/maintainability)
+
 # Projet6
 
 Création d'un site communautaire de partage de figures de snowboard via le framework Symfony.
