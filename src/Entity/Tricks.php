@@ -59,7 +59,7 @@ class Tricks
     private $author;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comments::class, mappedBy="trick_parent")
+     * @ORM\OneToMany(targetEntity=Comments::class, mappedBy="trick_parent", cascade={"persist"}, orphanRemoval=true)
      * @ORM\JoinColumn(nullable=false)
      */
     private $comments;
