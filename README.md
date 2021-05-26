@@ -19,7 +19,7 @@ MySQL 5.7.31
 Installation
 Clonez ou téléchargez le repository GitHub dans le dossier voulu :
 
-    git clone https://github.com/sorha/P6-SnowTricks.git
+    git clone https://github.com/Kzhiti/Projet6
 
 Renseignez la base de données dans le fichier .env dans la section MySQL.
 
