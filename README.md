@@ -27,12 +27,7 @@ Téléchargez et installez les dépendances back-end du projet avec Composer :
 
     composer install
 
-Créez la base de données si elle n'existe pas déjà, taper la commande ci-dessous en vous plaçant dans le répertoire du projet :
-
-    php bin/console doctrine:database:create
-Créez les différentes tables de la base de données en appliquant les migrations :
-
-    php bin/console doctrine:migrations:migrate
+Importez le base de données projet6.sql fournie.
     
 Ajouter un .htaccess dans public/
 
