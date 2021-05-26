@@ -29,7 +29,7 @@ Téléchargez et installez les dépendances back-end du projet avec Composer :
 
 Importez le base de données projet6.sql fournie.
     
-Ajouter un .htaccess dans public/
+Ajouter un .htaccess dans public/ si il n'est pas déjà présent
 
     <IfModule mod_rewrite.c>
            RewriteEngine On
